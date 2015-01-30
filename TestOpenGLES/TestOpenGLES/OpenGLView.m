@@ -87,7 +87,7 @@
 }
 
 - (void)render {
-    glClearColor(0, 1.0, 0, 1.);
+    glClearColor(0, 1.0, 1.0, 1.);
     glClear(GL_COLOR_BUFFER_BIT);
     
     [_context presentRenderbuffer:GL_RENDERBUFFER];
