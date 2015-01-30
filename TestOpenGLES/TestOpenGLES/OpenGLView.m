@@ -93,7 +93,6 @@
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
