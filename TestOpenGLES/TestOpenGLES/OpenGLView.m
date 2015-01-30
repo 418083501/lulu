@@ -7,6 +7,7 @@
 //
 
 #import "OpenGLView.h"
+#import "GLESUtils.h"
 
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
@@ -19,15 +20,69 @@
     GLuint _colorRenderBuffer;
     GLuint _frameBuffer;
     
-    BOOL _isSecond;
+    
+    
+    GLuint _programHandle;
+    GLuint _positionSlot;
     
 }
 
 -(void)setupLayer;
 
+- (void)setupProgram;
+
 @end
 
 @implementation OpenGLView
+
+-(void)setupProgram
+{
+    NSString *vertextPath = [[NSBundle mainBundle] pathForResource:@"vertextShader" ofType:@"glsl"];
+    NSString *fragmentPath = [[NSBundle mainBundle] pathForResource:@"FragmentShader" ofType:@"glsl"];
+    
+    GLuint vertextShader = [GLESUtils loadShader:GL_VERTEX_SHADER withFilepath:vertextPath];
+    GLuint fragmentShader = [GLESUtils loadShader:GL_FRAGMENT_SHADER withFilepath:fragmentPath];
+    
+    _programHandle = glCreateProgram();
+    
+    if (!_programHandle) {
+        
+        NSLog(@"create fail!");
+        
+        return;
+    }
+    
+    glAttachShader(_programHandle, vertextShader);
+    glAttachShader(_programHandle, fragmentShader);
+    
+    glLinkProgram(_programHandle);
+    
+    GLint programIsOk = 0;
+    glGetProgramiv(_programHandle, GL_LINK_STATUS, &programIsOk);
+    
+    if (!programIsOk) {
+        GLint length = 0;
+        
+        glGetProgramiv(_programHandle, GL_INFO_LOG_LENGTH, &length);
+        
+        if (length > 1) {
+            char *infoLog = malloc(sizeof(char) * length);
+            free(infoLog);
+        }
+        
+        glDeleteProgram(_programHandle);
+        _programHandle = 0;
+        
+        return;
+        
+    }
+    
+    glUseProgram(_programHandle);
+    
+    _positionSlot = glGetAttribLocation(_programHandle, "vPosition");
+    
+    
+}
 
 + (Class)layerClass {
     // 只有 [CAEAGLLayer class] 类型的 layer 才支持在其上描绘 OpenGL 内容。
@@ -90,6 +145,21 @@
     glClearColor(0, 1.0, 1.0, 1.);
     glClear(GL_COLOR_BUFFER_BIT);
     
+    glViewport(0, 0, self.frame.size.width, self.frame.size.height);
+    
+    GLfloat vertices[] = {
+        -0.5,-0.5,0.,
+        -0.5,0.5,0.,
+        0.5,0.5,0.,
+        0.5,-0.5,0.
+    };//x,y,z
+    
+    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    
+    glEnableVertexAttribArray(_positionSlot);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    
+    
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -110,6 +180,8 @@
     
     [self setupRenderBuffer];
     [self setupFrameBuffer];
+    
+    [self setupProgram];
     
     [self render];
 }

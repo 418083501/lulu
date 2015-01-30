@@ -11,11 +11,11 @@
 		161A4C111A7A222300EA77FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A4C101A7A222300EA77FA /* AppDelegate.m */; };
 		161A4C141A7A222300EA77FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A4C131A7A222300EA77FA /* ViewController.m */; };
 		161A4C191A7A222300EA77FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 161A4C181A7A222300EA77FA /* Images.xcassets */; };
-		161A4C1C1A7A222300EA77FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161A4C1A1A7A222300EA77FA /* LaunchScreen.xib */; };
 		161A4C281A7A222300EA77FA /* TestOpenGLESTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A4C271A7A222300EA77FA /* TestOpenGLESTests.m */; };
 		161A4C341A7A256100EA77FA /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A4C331A7A256100EA77FA /* OpenGLView.m */; };
 		161A4C361A7A257600EA77FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A4C351A7A257600EA77FA /* QuartzCore.framework */; };
 		161A4C381A7A258200EA77FA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A4C371A7A258200EA77FA /* OpenGLES.framework */; };
+		16C9807A1A7B2F4F00CB9B57 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C980791A7B2F4F00CB9B57 /* GLESUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,10 @@
 		161A4C331A7A256100EA77FA /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
 		161A4C351A7A257600EA77FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		161A4C371A7A258200EA77FA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		16C980781A7B2F4F00CB9B57 /* GLESUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESUtils.h; sourceTree = "<group>"; };
+		16C980791A7B2F4F00CB9B57 /* GLESUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLESUtils.m; sourceTree = "<group>"; };
+		16C9807B1A7B38EF00CB9B57 /* vertextShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertextShader.glsl; sourceTree = "<group>"; };
+		16C9807D1A7B39DC00CB9B57 /* FragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FragmentShader.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,10 @@
 			children = (
 				161A4C321A7A256100EA77FA /* OpenGLView.h */,
 				161A4C331A7A256100EA77FA /* OpenGLView.m */,
+				16C980781A7B2F4F00CB9B57 /* GLESUtils.h */,
+				16C980791A7B2F4F00CB9B57 /* GLESUtils.m */,
+				16C9807B1A7B38EF00CB9B57 /* vertextShader.glsl */,
+				16C9807D1A7B39DC00CB9B57 /* FragmentShader.glsl */,
 			);
 			name = OpenGLESView;
 			sourceTree = "<group>";
@@ -217,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				161A4C1C1A7A222300EA77FA /* LaunchScreen.xib in Resources */,
 				161A4C191A7A222300EA77FA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +245,7 @@
 			files = (
 				161A4C141A7A222300EA77FA /* ViewController.m in Sources */,
 				161A4C111A7A222300EA77FA /* AppDelegate.m in Sources */,
+				16C9807A1A7B2F4F00CB9B57 /* GLESUtils.m in Sources */,
 				161A4C0E1A7A222300EA77FA /* main.m in Sources */,
 				161A4C341A7A256100EA77FA /* OpenGLView.m in Sources */,
 			);
@@ -422,6 +430,7 @@
 				161A4C2D1A7A222300EA77FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		161A4C2E1A7A222300EA77FA /* Build configuration list for PBXNativeTarget "TestOpenGLESTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +439,7 @@
 				161A4C301A7A222300EA77FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
