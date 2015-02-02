@@ -35,6 +35,14 @@
 
 @implementation OpenGLView
 
+-(void)setPosX:(float)posX
+{
+    _posX = posX;
+    
+#warning 这里
+    
+}
+
 -(void)setupProgram
 {
     NSString *vertextPath = [[NSBundle mainBundle] pathForResource:@"vertextShader" ofType:@"glsl"];
@@ -141,26 +149,76 @@
     _colorRenderBuffer = 0;
 }
 
+- (void)drawTriCone
+{
+    GLfloat vertexs[] = {
+        -.5,.5,0,
+        .5,.5,0,
+        .5,-.5,0,
+        -.5,-.5,0,
+        0,0,-.707
+    };
+    
+    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertexs);
+    glEnableVertexAttribArray(_positionSlot);
+    
+    
+    //弄不懂什么意思
+    GLubyte indices[] = {
+        0, 1, 1, 2, 2, 3, 3, 0,
+        4, 0, 4, 1, 4, 2, 4, 3
+    };
+    
+    glDrawElements(GL_LINES, sizeof(indices)/sizeof(GLubyte), GL_UNSIGNED_BYTE, indices);
+    
+}
+
 - (void)render {
     glClearColor(0, 1.0, 1.0, 1.);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
     
-    GLfloat vertices[] = {
-        -0.5,-0.5,0.,
-        -0.5,0.5,0.,
-        0.5,0.5,0.,
-        0.5,-0.5,0.
-    };//x,y,z
+//    GLfloat vertices[] = {
+//        -0.5,-0.5,0.,
+//        -0.5,0.5,0.,
+//        0.5,0.5,0.,
+//        0.5,-0.5,0.
+//    };//x,y,z
+//    
+//    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+//    
+//    glEnableVertexAttribArray(_positionSlot);
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
     
-    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    
-    glEnableVertexAttribArray(_positionSlot);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    [self drawTriCone];
     
     
     [_context presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+- (void)cleanup
+{
+    [self destoryBuffers];
+    
+    if (_programHandle != 0) {
+        glDeleteProgram(_programHandle);
+        _programHandle = 0;
+    }
+    
+    if (_context && [EAGLContext currentContext] == _context)
+        [EAGLContext setCurrentContext:nil];
+    
+    _context = nil;
+}
+
+- (void)destoryBuffers
+{
+    glDeleteRenderbuffers(1, &_colorRenderBuffer);
+    _colorRenderBuffer = 0;
+    
+    glDeleteFramebuffers(1, &_frameBuffer);
+    _frameBuffer = 0;
 }
 
 - (id)initWithFrame:(CGRect)frame

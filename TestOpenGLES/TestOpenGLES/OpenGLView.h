@@ -10,4 +10,8 @@
 
 @interface OpenGLView : UIView
 
+@property (nonatomic, assign) float posX;
+
+- (void)cleanup;
+
 @end
