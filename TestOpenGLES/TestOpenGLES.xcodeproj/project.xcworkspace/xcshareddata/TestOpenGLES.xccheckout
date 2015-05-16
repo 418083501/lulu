@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2555BD2D-A497-41B0-9C4A-0355145E181B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TestOpenGLES</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8E4DF8C5B8DE7F140DCB01C83FCFC5AEA61C5984</key>
+		<string>https://418083501%2540qq.com@github.com/418083501/lulu.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TestOpenGLES/TestOpenGLES.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8E4DF8C5B8DE7F140DCB01C83FCFC5AEA61C5984</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://418083501%2540qq.com@github.com/418083501/lulu.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8E4DF8C5B8DE7F140DCB01C83FCFC5AEA61C5984</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8E4DF8C5B8DE7F140DCB01C83FCFC5AEA61C5984</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lulu</string>
+		</dict>
+	</array>
+</dict>
+</plist>
